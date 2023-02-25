@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Helmet = () => {
+const Helmet = (props) => {
   return (
     <div>
       
