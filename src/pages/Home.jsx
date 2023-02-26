@@ -1,6 +1,8 @@
 import React from 'react';
 
 import Helmet from '../components/Helmet/Helmet';
+import '../styles/Home.css'
+
 import { Container, Row, Col } from 'reactstrap';
 import heroImg from '../assets/images/hero-img.png'
 
