@@ -5,6 +5,12 @@ import '../styles/Home.css'
 
 import { Container, Row, Col } from 'reactstrap';
 import heroImg from '../assets/images/hero-img.png'
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import Services from '../Services/Services';
+import ProductsList from '../components/UI/ProductsList';
+import products from '../assets/data/products';
+import { useState } from 'react';
 
 const Home = () => {
 
@@ -19,7 +25,7 @@ const Home = () => {
                             Make Your Interior More Minimalistic & Modern
                         </h2>
                         <p>Get your desireable interiors and make your home more beautiful with more fancy items</p>
-                        <button className='buy_btn'>SHOP NOW</button>
+                        <motion.button whileTap={{scale:1.2}} className='buy_btn'><Link to='/shop'>SHOP NOW</Link></motion.button>
                         </div>
                     </Col>
                     <Col lg='6' md='6'>
@@ -29,6 +35,17 @@ const Home = () => {
                         </div>
 
                     </Col>
+                </Row>
+            </Container>
+        </section>
+        <Services/>
+        <section className='trending_products'>
+            <Container>
+                <Row>
+                    <Col lg='12' className='text-center'>
+                        <h2 className='section_title'>Trending Products</h2>
+                    </Col>
+                    <ProductsList/>
                 </Row>
             </Container>
         </section>
