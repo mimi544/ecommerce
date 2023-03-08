@@ -1,0 +1,10 @@
+.footer{
+    padding-top:60px;
+    padding-bottom:30px;
+    background: var(--primary-color);
+}
+
+.footer_text{
+    line-height: 30px;
+    color: #ffff;
+}
