@@ -4,7 +4,6 @@ import './Footer.css'
 import { Container, Row, Col, ListGroup, ListGroupItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
-import logo from '../../assets/images/logo.png'
 
 const Footer = () =>{
 
@@ -26,7 +25,7 @@ const Footer = () =>{
                     </Col>
 
                     <Col lg='3'>
-                    <div className='footer_quick-link'>
+                    <div className='footer_quick-links'>
                             <h4 className='quick_links-title'>Top Categories</h4>
                             <ListGroup >
                                 <ListGroupItem className='ps-0 border-0'>
@@ -58,7 +57,7 @@ const Footer = () =>{
                     </Col>
 
                     <Col lg='2'>
-                    <div className='footer_quick-link'>
+                    <div className='footer_quick-links'>
                             <h4 className='quick_links-title'>Useful Links</h4>
                             <ListGroup>
                                 <ListGroupItem className='ps-0 border-0'>
@@ -89,29 +88,24 @@ const Footer = () =>{
                     </Col>
                     
                     <Col lg='3'>
-                    <div className='footer_quick-link'>
+                    <div className='footer_quick-links'>
                             <h4 className='quick_links-title'>Contact</h4>
-                            <ListGroup>
-                                <ListGroupItem className='ps-0 border-0'>
+                            <ListGroup className='footer_contact'>
+                                <ListGroupItem className='ps-0 border-0 d-flex align-item-center gap-2'>
                                     <span><i className="ri-map-pin-user-line"></i></span>
                                     <p>123, Natunpullay , Near Sagar Sethu Club , Howrah - 711113</p>
                                 </ListGroupItem>
 
-                                <ListGroupItem className='ps-0 border-0'>
+                                <ListGroupItem className='ps-0 border-0 d-flex align-item-center gap-2'>
                                     <span><i className="ri-phone-fill"></i></span>
                                     <p>+918240150887</p>
                                 </ListGroupItem>
 
-                                <ListGroupItem className='ps-0 border-0'>
+                                <ListGroupItem className='ps-0 border-0 d-flex align-item-center gap-2'>
                                     <span><i className="ri-mail-open-fill"></i></span>
                                     <p>ssohini50@gmail.com</p>
                                 </ListGroupItem>
 
-                                <ListGroupItem className='ps-0 border-0'>
-                                    <Link to='#'>
-                                        Privacy Policies
-                                    </Link>
-                                </ListGroupItem>
                             </ListGroup>
                         </div>
                     </Col>

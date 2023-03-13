@@ -8,3 +8,36 @@
     line-height: 30px;
     color: #ffff;
 }
+
+.footer_quick-links ul li {
+    background: transparent !important;
+}
+
+.footer_quick-links ul li a{
+    color: #ffff;
+}
+
+.quick_links-title {
+    margin-bottom: 20px;
+    color: #ffff;
+    font-size: 1.1 rem;
+}
+
+.footer_contact li{
+    color: #ffff;
+}
+
+.footer_contact li span{
+    font-size: 1.2 rem;
+}
+
+.footer_contact li p{
+    font-size: 0.9 rem;
+}
+
+.footer_copyright{
+    color: #ffff;
+    font-size: 0.9 rem;
+    margin-top: 50px;
+    text-align: center;
+}
