@@ -63,6 +63,9 @@
     .hero_content h2{
         font-size:2 rem;
     }
+    .section_title{
+        font-size: 1.7 rem;
+    }
 }
 
 @media only screen and (max-width:768px){
