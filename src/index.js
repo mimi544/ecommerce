@@ -19,10 +19,10 @@ root.render(
 					position="top-right"
 					autoClose={3000}
 					closeOnClick
-					pauseOnHover
+					pauseOnHover={false}
 					theme="dark"
 				/>{" "}
-				<ToastContainer /> <App />{" "}
+				<App />{" "}
 			</Provider>{" "}
 		</BrowserRouter>{" "}
 	</React.StrictMode>
