@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Row, Col } from "reactstrap";
 import { useParams } from "react-router-dom";
 import products from "../assets/data/products";
 import CommonSection from "../components/UI/CommonSection";
 import Helmet from "../components/Helmet/Helmet";
 import "../styles/product-details.css";
+import { motion } from "framer-motion";
 
 const ProductDetails = () => {
+	const [tab, setTab] = useState("desc");
 	const { id } = useParams();
 	const product = products.find((item) => item.id === id);
 	const {
@@ -14,7 +16,7 @@ const ProductDetails = () => {
 		productName,
 		price,
 		avgRating,
-		review,
+		reviews,
 		description,
 		shortDesc,
 	} = product;
@@ -70,16 +72,134 @@ const ProductDetails = () => {
 									</div>{" "}
 									<p>
 										{" "}
-										({avgRating}
+										( <span> {avgRating} </span>
 										ratings){" "}
 									</p>{" "}
 								</div>{" "}
-								<span> {price} </span> <p> {shortDesc} </p>{" "}
-								<button className="buy_btn">
+								<span className="product_price">
+									{" "}
+									$ {price}{" "}
+								</span>{" "}
+								<p className="mt-3"> {shortDesc} </p>{" "}
+								<motion.button
+									whileTap={{ scale: 1.2 }}
+									className="buy_btn"
+								>
 									{" "}
 									Add to Cart{" "}
-								</button>{" "}
+								</motion.button>{" "}
 							</div>{" "}
+						</Col>{" "}
+					</Row>{" "}
+				</Container>{" "}
+			</section>{" "}
+			<section>
+				<Container>
+					<Row>
+						<Col lg="12">
+							<div className="tab_wrapper d-flex align-items-center gap-5">
+								<h6
+									className={`${
+										tab === "desc" ? "active_tab" : ""
+									}`}
+									onClick={() => setTab("desc")}
+								>
+									{" "}
+									Description{" "}
+								</h6>{" "}
+								<h6
+									className={`${
+										tab === "rev" ? "active_tab" : ""
+									}`}
+									onClick={() => setTab("rev")}
+								>
+									{" "}
+									Reviews({reviews.length}){" "}
+								</h6>{" "}
+							</div>{" "}
+							{tab === "desc" ? (
+								<div className="tab_content mt-5">
+									<p> {description} </p>{" "}
+								</div>
+							) : (
+								<div className="product_review mt-5">
+									{" "}
+									<div className="review_wrapper">
+										<ul>
+											{" "}
+											{reviews.map((item, index) => (
+												<li
+													kew={index}
+													className="mb-4"
+												>
+													<h6> Ashis Sen </h6>{" "}
+													<span>
+														{" "}
+														{
+															item.rating
+														}(rating){" "}
+													</span>{" "}
+													<p> {item.text} </p>{" "}
+												</li>
+											))}{" "}
+										</ul>{" "}
+										<div className="review_form">
+											<h4> Leave Your Experience </h4>{" "}
+											<form action="">
+												<div className="form_group">
+													<input
+														type="text"
+														placeholder="Enter name..."
+													/>{" "}
+												</div>{" "}
+												<div className="form_group">
+													<span>
+														{" "}
+														1{" "}
+														<i className="ri-star-s-fill">
+															{" "}
+														</i>{" "}
+													</span>{" "}
+													<span>
+														{" "}
+														2{" "}
+														<i className="ri-star-s-fill">
+															{" "}
+														</i>{" "}
+													</span>{" "}
+													<span>
+														{" "}
+														3{" "}
+														<i className="ri-star-s-fill">
+															{" "}
+														</i>{" "}
+													</span>{" "}
+													<span>
+														{" "}
+														4{" "}
+														<i className="ri-star-s-fill">
+															{" "}
+														</i>{" "}
+													</span>{" "}
+													<span>
+														{" "}
+														5{" "}
+														<i className="ri-star-s-fill">
+															{" "}
+														</i>{" "}
+													</span>{" "}
+												</div>{" "}
+												<div className="form_group">
+													<input
+														type="text"
+														placeholder="Review Message"
+													/>{" "}
+												</div>{" "}
+											</form>{" "}
+										</div>{" "}
+									</div>{" "}
+								</div>
+							)}{" "}
 						</Col>{" "}
 					</Row>{" "}
 				</Container>{" "}
