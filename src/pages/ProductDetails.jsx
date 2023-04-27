@@ -152,7 +152,7 @@ const ProductDetails = () => {
 														placeholder="Enter name..."
 													/>{" "}
 												</div>{" "}
-												<div className="form_group">
+												<div className="form_group d-flex align-items-center gap-5">
 													<span>
 														{" "}
 														1{" "}
@@ -190,7 +190,8 @@ const ProductDetails = () => {
 													</span>{" "}
 												</div>{" "}
 												<div className="form_group">
-													<input
+													<textarea
+														rows={4}
 														type="text"
 														placeholder="Review Message"
 													/>{" "}
