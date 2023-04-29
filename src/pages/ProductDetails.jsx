@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Container, Row, Col } from "reactstrap";
 import { useParams } from "react-router-dom";
 import products from "../assets/data/products";
@@ -6,9 +6,16 @@ import CommonSection from "../components/UI/CommonSection";
 import Helmet from "../components/Helmet/Helmet";
 import "../styles/product-details.css";
 import { motion } from "framer-motion";
-
+import ProductsList from "../components/UI/ProductsList";
+import { useDispatch } from "react-redux";
+import { cartActions } from "../redux/slices/cartSlice";
+import { toast } from "react-toastify";
 const ProductDetails = () => {
 	const [tab, setTab] = useState("desc");
+	const reviewUser = useRef("");
+	const reviewMsg = useRef("");
+	const dispatch = useDispatch();
+	const [rating, setRating] = useState(null);
 	const { id } = useParams();
 	const product = products.find((item) => item.id === id);
 	const {
@@ -19,11 +26,34 @@ const ProductDetails = () => {
 		reviews,
 		description,
 		shortDesc,
+		category,
 	} = product;
 
+	const relatedProducts = products.filter(
+		(item) => item.category === category
+	);
+	// console.log(product);
+
+	const submitHandler = (e) => {
+		e.preventDefault();
+		const reviewUserName = reviewUser.current.value;
+		const reviewUserMsg = reviewMsg.current.value;
+	};
+
+	const addToCart = () => {
+		dispatch(
+			cartActions.addItem({
+				id,
+				image: imgUrl,
+				productName,
+				price,
+			})
+		);
+		toast.success("product added successfully");
+	};
 	return (
-		<Helmet>
-			<CommonSection />
+		<Helmet title={productName}>
+			<CommonSection title={productName} />{" "}
 			<section className="pt-0">
 				<Container>
 					<Row>
@@ -39,31 +69,31 @@ const ProductDetails = () => {
 								<div className="product_rating d-flex align-items-center gap-5 mb-3">
 									<div>
 										{" "}
-										<span>
+										<span onClick={() => setRating(1)}>
 											{" "}
 											<i className="ri-star-s-fill">
 												{" "}
 											</i>{" "}
 										</span>{" "}
-										<span>
+										<span onClick={() => setRating(2)}>
 											{" "}
 											<i className="ri-star-s-fill">
 												{" "}
 											</i>{" "}
 										</span>{" "}
-										<span>
+										<span onClick={() => setRating(3)}>
 											{" "}
 											<i className="ri-star-s-fill">
 												{" "}
 											</i>{" "}
 										</span>{" "}
-										<span>
+										<span onClick={() => setRating(4)}>
 											{" "}
 											<i className="ri-star-s-fill">
 												{" "}
 											</i>{" "}
 										</span>{" "}
-										<span>
+										<span onClick={() => setRating(5)}>
 											{" "}
 											<i className="ri-star-half-s-fill">
 												{" "}
@@ -76,18 +106,25 @@ const ProductDetails = () => {
 										ratings){" "}
 									</p>{" "}
 								</div>{" "}
-								<span className="product_price">
-									{" "}
-									$ {price}{" "}
-								</span>{" "}
-								<p className="mt-3"> {shortDesc} </p>{" "}
-								<motion.button
-									whileTap={{ scale: 1.2 }}
-									className="buy_btn"
-								>
-									{" "}
-									Add to Cart{" "}
-								</motion.button>{" "}
+								<div className="d-flex align-items-center gap-5">
+									<span className="product_price">
+										{" "}
+										$ {price}{" "}
+									</span>{" "}
+									<span>
+										{" "}
+										Category: {category.toUpperCase()}{" "}
+									</span>{" "}
+									<p className="mt-3"> {shortDesc} </p>{" "}
+									<motion.button
+										whileTap={{ scale: 1.2 }}
+										className="buy_btn"
+										onClick={addToCart}
+									>
+										{" "}
+										Add to Cart{" "}
+									</motion.button>{" "}
+								</div>{" "}
 							</div>{" "}
 						</Col>{" "}
 					</Row>{" "}
@@ -145,11 +182,15 @@ const ProductDetails = () => {
 										</ul>{" "}
 										<div className="review_form">
 											<h4> Leave Your Experience </h4>{" "}
-											<form action="">
+											<form
+												action=""
+												onSubmit={submitHandler}
+											>
 												<div className="form_group">
 													<input
 														type="text"
 														placeholder="Enter name..."
+														ref={reviewUser}
 													/>{" "}
 												</div>{" "}
 												<div className="form_group d-flex align-items-center gap-5">
@@ -191,17 +232,32 @@ const ProductDetails = () => {
 												</div>{" "}
 												<div className="form_group">
 													<textarea
+														ref={reviewMsg}
 														rows={4}
 														type="text"
 														placeholder="Review Message"
 													/>{" "}
 												</div>{" "}
+												<button
+													type="submit"
+													className="buy_btn"
+												>
+													{" "}
+													Submit{" "}
+												</button>{" "}
 											</form>{" "}
 										</div>{" "}
 									</div>{" "}
 								</div>
 							)}{" "}
 						</Col>{" "}
+						<Col lg="12" className="mt-5">
+							<h2 className="related_title">
+								{" "}
+								You Might also like{" "}
+							</h2>{" "}
+						</Col>{" "}
+						<ProductsList data={relatedProducts} />{" "}
 					</Row>{" "}
 				</Container>{" "}
 			</section>{" "}

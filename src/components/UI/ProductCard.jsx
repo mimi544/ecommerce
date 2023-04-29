@@ -43,7 +43,7 @@ const ProductCard = ({ item }) => {
 					<span className="price"> {item.price} </span>{" "}
 					<motion.span whileTap={{ scale: 1.2 }} onClick={addToCart}>
 						{" "}
-						<i class="ri-add-circle-fill"> </i>{" "}
+						<i className="ri-add-circle-fill"> </i>{" "}
 					</motion.span>{" "}
 				</div>{" "}
 			</div>{" "}

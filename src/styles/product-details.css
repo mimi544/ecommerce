@@ -74,10 +74,11 @@
     margin-bottom: 30px;
 }
 
-.from_group span {
+.form_group span {
     display: flex;
     align-items: center;
     column-gap: 5px;
     color: cornflowerblue;
     font-weight: 600;
+    cursor: pointer;
 }
