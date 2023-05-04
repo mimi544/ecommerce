@@ -50,7 +50,7 @@ const Cart = () => {
 								<h6 className="d-flex align-items-center justify-content between">
 									{" "}
 									Subtotal{" "}
-									<span className="fs-4 fw-bold">
+									<span className="fs-4 fw-bold ms-5">
 										{" "}
 										{totalAmount}{" "}
 									</span>{" "}
