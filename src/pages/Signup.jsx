@@ -15,12 +15,17 @@ import { toast } from "react-toastify";
 import "../styles/login.css";
 import { useNavigate } from "react-router-dom";
 
+
+
 const Signup = () => {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [file, setFile] = useState(null);
     const [loading, setLoading] = useState(false);
+
+
+    const navigate = useNavigate()
 
     const signup = async(e) => {
         e.preventDefault();
@@ -56,8 +61,11 @@ const Signup = () => {
                 }
             );
 
-            console.log(user);
+            setLoading(false)
+            toast.success("Account created successfully")
+            navigate("/login")
         } catch (error) {
+            setLoading(false)
             toast.error("something went wrong");
         }
     };
@@ -66,7 +74,12 @@ const Signup = () => {
         <section >
             <Container >
                 <Row >
-                    <Col lg = "6"className = "m-auto text-center" >
+                    {loading?(
+                        <Col lg="12" className="text-center">
+                            <h5 className="fw-bold">Loading..........</h5>
+                        </Col>
+                    ):(
+                        <Col lg = "6"className = "m-auto text-center" >
                         <h3 className = "fw-bold mb-4" > SignUp </h3>{" "}
                         <Form className = "auth_form"onSubmit = { signup } >
                         <FormGroup className = "form_group" >
@@ -113,11 +126,14 @@ const Signup = () => {
                         </button>{" "} 
                         <p > { " " } Already have an account ? { " " } <Link to = "/login" > Login </Link>{" "} </p>{" "} 
                      </Form>{" "} 
-        </Col>{" "}
-        </Row>{" "} 
-        </Container>{" "} 
+                    </Col>
+                    )
+
+                    }
+                </Row>{" "} 
+            </Container>{" "} 
         </section>{" "} 
-        </Helmet>
+    </Helmet>
     );
 };
 
