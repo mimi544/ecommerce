@@ -14,6 +14,7 @@ import useAuth from "../../custom-hooks/useAuth"
 import { Link } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase.config";
+import { toast } from "react-toastify";
 
 const nav_link = [
 	{
@@ -49,6 +50,15 @@ const Header = () => {
 			}
 		});
 	};
+
+	const logout = () => {
+		signOut(auth).then(()=>{
+			toast.success("logout completed")
+			navigate("/home")
+		}).catch(err=>{
+			toast.error(err.message)
+		})
+	}
 
 	useEffect(() => {
 		stickyHeaderFunc();
@@ -125,7 +135,7 @@ const Header = () => {
 								<div className="profile_action" ref={profileActionRef} onClick={toggleProfileAction}>
 								{/* <span>Logout</span>  */}
 									{	
-										currentUser ? <span>Logout</span> : <div>
+										currentUser ? <span onClick={logout}>Logout</span> : <div className="d-flex align-items-center justify-content-center flex-column">
 											<Link to ="/signup">Signup</Link>
 											<Link to ="/login">Login</Link>
 										</div>
