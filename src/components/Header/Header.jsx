@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 
 import { NavLink, useNavigate } from "react-router-dom";
 import "./header.css";
@@ -8,13 +8,13 @@ import { motion } from "framer-motion";
 import logo from "../../assets/images/logo.png";
 import userIcon from "../../assets/images/user-icon.png";
 
-import { Container, Row } from "reactstrap";
-import { useSelector } from "react-redux";
-import useAuth from "../../custom-hooks/useAuth"
-import { Link } from "react-router-dom";
 import { signOut } from "firebase/auth";
-import { auth } from "../../firebase.config";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import { Container, Row } from "reactstrap";
+import useAuth from "../../custom-hooks/useAuth";
+import { auth } from "../../firebase.config";
 
 const nav_link = [
 	{
@@ -134,10 +134,11 @@ const Header = () => {
 								/>{" "}
 								<div className="profile_action" ref={profileActionRef} onClick={toggleProfileAction}>
 								{/* <span>Logout</span>  */}
-									{	
+									{
 										currentUser ? <span onClick={logout}>Logout</span> : <div className="d-flex align-items-center justify-content-center flex-column">
 											<Link to ="/signup">Signup</Link>
 											<Link to ="/login">Login</Link>
+											<Link to ="/dashboard">Dashboard</Link>
 										</div>
 									}
 								</div>
